@@ -23,7 +23,6 @@ import com.example.howtocook.uis.acticities.MainActivity;
  */
 public class MainHomeFragment extends Fragment {
 
-    Toolbar toolbar;
 
     public MainHomeFragment() {
         // Required empty public constructor
@@ -42,9 +41,7 @@ public class MainHomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        toolbar = view.findViewById(R.id.main_home_toolbar);
-        MainActivity activity = (MainActivity) getActivity();
-        activity.setSupportActionBar(toolbar);
+
 
     }
 

@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--Toolbar text color-->
+    <style name="toolbar_home_style">
+        <item name="android:textColorSecondary">#262626</item> <!--mau cua chu va icon tren thanh toolbar-->
+    </style>
+
+
 </resources>

@@ -7,14 +7,6 @@
     tools:context=".uis.fragments.MainHomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/main_home_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title="Home"
-        android:background="@color/colorPrimary"
-        app:navigationIcon="@drawable/ic_public_black_24dp">
 
-    </android.support.v7.widget.Toolbar>
 
 </FrameLayout>
