@@ -58,13 +58,12 @@
                     android:layout_weight="1"
                     android:src="@drawable/ic_file_download_black_24dp" />
 
-                <TextView
+                <Spinner
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="6"
-                    android:text="Sap xep : Luot xem"
                     android:textColor="@android:color/black"
                     android:textSize="14sp" />
 
