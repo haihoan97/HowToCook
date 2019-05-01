@@ -10,7 +10,7 @@
 
     <!--Toolbar text color-->
     <style name="toolbar_home_style">
-        <item name="android:textColorSecondary">#262626</item> <!--mau cua chu va icon tren thanh toolbar-->
+        <item name="android:textColorSecondary">#fff</item> <!--mau cua chu va icon tren thanh toolbar-->
     </style>
 
 

@@ -1,10 +1,10 @@
 package com.example.howtocook.uis.acticities;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,13 +12,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +28,7 @@ import com.example.howtocook.model.UserNotification;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private BottomNavigationView bottomNavigationView;
     private ViewPager viewPager;
@@ -40,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar main_toolbar;
     private LinearLayout main_search_view;
     private RecyclerView main_search_recycle_text;
+    private LinearLayout item_search_winter;
+    private LinearLayout item_search_spring;
+    private LinearLayout item_search_summer;
+    private LinearLayout item_search_autumn;
 
     private ArrayList<UserNotification> listNoti;
     private ArrayList<Search> searchList;
@@ -56,10 +57,15 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewpager);
         main_toolbar = findViewById(R.id.main_toolbar);
         main_search_recycle_text = findViewById(R.id.main_search_recycle_text);
-
-        viewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager());
+        item_search_winter = findViewById(R.id.item_search_winter);
+        item_search_spring = findViewById(R.id.item_search_spring);
+        item_search_summer = findViewById(R.id.item_search_summer);
+        item_search_autumn = findViewById(R.id.item_search_autumn);
         main_search_view = findViewById(R.id.main_search_view);
 
+
+        //viewpager
+        viewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
 
         //toolbar
@@ -80,6 +86,12 @@ public class MainActivity extends AppCompatActivity {
         main_search_recycle_text.setLayoutManager(manager);
         searchTextAdapter = new MainSearchTextAdapter(searchList);
         main_search_recycle_text.setAdapter(searchTextAdapter);
+
+        //search click
+        item_search_autumn.setOnClickListener(this);
+        item_search_summer.setOnClickListener(this);
+        item_search_spring.setOnClickListener(this);
+        item_search_winter.setOnClickListener(this);
 
 
 
@@ -103,6 +115,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void openSearchActivity(String searchContent, String season){
+        Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+        intent.putExtra("season", season);
+        intent.putExtra("searchContent", searchContent);
+        startActivity(intent);
+
+    }
+
     ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int i, float v, int i1) {
@@ -119,8 +139,8 @@ public class MainActivity extends AppCompatActivity {
                     main_toolbar.setNavigationIcon(R.drawable.ic_home_black_24dp);
                     break;
                 case 1:
-                    main_toolbar.setTitle("Tim kiem");
-                    main_toolbar.setNavigationIcon(R.drawable.ic_search_black_24dp);
+                    main_toolbar.setTitle("Bai viet");
+                    main_toolbar.setNavigationIcon(R.drawable.ic_post_black_24dp);
                     break;
                 case 2:
                     main_toolbar.setTitle("Thong bao");
@@ -149,10 +169,10 @@ public class MainActivity extends AppCompatActivity {
                     main_toolbar.setTitle("Home");
                     main_toolbar.setNavigationIcon(R.drawable.ic_home_black_24dp);
                     return true;
-                case R.id.main_search:
+                case R.id.main_personal_post:
                     viewPager.setCurrentItem(1);
                     main_toolbar.setTitle("Tim kiem");
-                    main_toolbar.setNavigationIcon(R.drawable.ic_search_black_24dp);
+                    main_toolbar.setNavigationIcon(R.drawable.ic_search_white_24dp);
                     return true;
                 case R.id.main_notification:
                     viewPager.setCurrentItem(2);
@@ -185,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
                 item.setActionView(search_view);
                 main_search_view.setVisibility(View.VISIBLE);
                 viewPager.setVisibility(View.GONE);
+                bottomNavigationView.setVisibility(View.GONE);
                 Toast.makeText(MainActivity.this, "OpenSearch", Toast.LENGTH_SHORT).show();
                 return true;
             }
@@ -194,12 +215,33 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "closeView", Toast.LENGTH_SHORT).show();
                 main_search_view.setVisibility(View.GONE);
                 viewPager.setVisibility(View.VISIBLE);
+                bottomNavigationView.setVisibility(View.VISIBLE);
                 return true;
             }
         });
 
 
         return true;
+
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.item_search_spring:
+                openSearchActivity("no","spring");
+                break;
+            case R.id.item_search_autumn:
+                openSearchActivity("no","autumn");
+                break;
+            case R.id.item_search_summer:
+                openSearchActivity("no","summer");
+                break;
+            case R.id.item_search_winter:
+                openSearchActivity("no","winter");
+                break;
+        }
 
     }
 }

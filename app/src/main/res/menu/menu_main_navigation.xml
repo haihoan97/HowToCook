@@ -11,9 +11,9 @@
     </item>
 
     <item
-        android:id="@+id/main_search"
-        android:icon="@drawable/ic_search_black_24dp"
-        android:title="Tim kiem"
+        android:id="@+id/main_personal_post"
+        android:icon="@drawable/ic_post_black_24dp"
+        android:title="Bai viet"
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="always">
 

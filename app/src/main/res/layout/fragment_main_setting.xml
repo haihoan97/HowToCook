@@ -19,6 +19,7 @@
 
 
         <LinearLayout
+            android:id="@+id/ln_setting_personal"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:orientation="horizontal">
@@ -308,6 +309,7 @@
 
         <!--Dang xuat-->
         <LinearLayout
+            android:id="@+id/setting_log_out"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

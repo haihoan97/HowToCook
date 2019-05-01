@@ -6,12 +6,12 @@
     android:orientation="horizontal">
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-
+    <ImageView
+        android:id="@+id/item_delete_search"
         android:layout_width="20dp"
         android:layout_height="match_parent"
         android:layout_margin="6dp"
-        android:background="@drawable/ic_file_download_black_24dp" />
+        android:background="@drawable/ic_cancel_black_24dp" />
 
     <TextView
         android:id="@+id/item_main_search_content"

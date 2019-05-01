@@ -22,7 +22,7 @@
             app:layout_scrollFlags="scroll|enterAlways|snap"
             app:navigationIcon="@drawable/ic_home_black_24dp"
             app:title="Home"
-            app:titleTextColor="#262626">
+            app:titleTextColor="#fff">
 
 
 
@@ -31,6 +31,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -38,55 +39,169 @@
         android:layout_alignParentTop="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
-        <LinearLayout
-            android:id="@+id/main_search_view"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="#ffffff"
-            android:visibility="gone">
-
-            <HorizontalScrollView
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/main_search_view"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="#ffffff"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+
+                    <LinearLayout
+                        android:id="@+id/item_search_winter"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/kem"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_gravity="center_vertical"
+                            android:text="Mùa đông"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/item_search_summer"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/he"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_gravity="center_vertical"
+                            android:text="Mùa hè"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+
+                    <LinearLayout
+                        android:id="@+id/item_search_spring"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/xuan"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_gravity="center_vertical"
+                            android:text="Mùa xuân"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/item_search_autumn"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/thu"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_gravity="center_vertical"
+                            android:text="Mùa thu"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/gray" />
 
                 <android.support.v7.widget.RecyclerView
+                    android:id="@+id/main_search_recycle_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    >
+                    android:nestedScrollingEnabled="true">
 
                 </android.support.v7.widget.RecyclerView>
-            </HorizontalScrollView>
+            </LinearLayout>
+        </ScrollView>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/main_search_recycle_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_pager"
+            android:layout_gravity="bottom"
+            android:background="#fff"
+            android:foreground="?attr/selectableItemBackground"
+            app:itemIconTint="@color/mainColor"
+            app:itemTextColor="@color/mainColor"
+            app:menu="@menu/menu_main_navigation">
 
-            </android.support.v7.widget.RecyclerView>
-        </LinearLayout>
+
+        </android.support.design.widget.BottomNavigationView>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
+            android:layout_below="@+id/bottom_navigation"
             android:layout_height="match_parent"
-           />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            />
+
+
+
     </RelativeLayout>
 
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        android:background="@color/mainColor"
-        android:foreground="?attr/selectableItemBackground"
-        app:itemIconTint="#fff"
-        app:itemTextColor="#fff"
-        app:menu="@menu/menu_main_navigation">
 
-    </android.support.design.widget.BottomNavigationView>
 
 
 </android.support.design.widget.CoordinatorLayout>

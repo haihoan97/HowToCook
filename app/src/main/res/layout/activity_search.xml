@@ -20,15 +20,10 @@
             android:background="@color/mainColor"
             android:gravity="center"
             android:minHeight="?attr/actionBarSize"
+            app:title="Tìm kiếm"
+            app:navigationIcon="@drawable/ic_search_white_24dp"
             app:layout_scrollFlags="scroll|enterAlways">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tim Kiem"
-                android:textSize="24sp"
-                android:textColor="#000"
-                android:gravity="center"/>
 
         </android.support.v7.widget.Toolbar>
 
@@ -42,41 +37,51 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:descendantFocusability="blocksDescendants">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
 
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_file_download_black_24dp" />
-
                 <Spinner
+                    android:id="@+id/search_spinner"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="6"
                     android:textColor="@android:color/black"
                     android:textSize="14sp" />
 
                 <Button
+                    android:id="@+id/search_filter"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:text="Loc"
-                    android:drawableLeft="@drawable/ic_file_download_black_24dp" />
+                    android:text="Lọc"
+                    android:textAllCaps="false"
+                    android:background="#fff"
+                    android:drawableLeft="@drawable/ic_filter_black_24dp" />
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/search_tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tim kiem : Ga ran"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:layout_margin="5dp"/>
+
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/search_recycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
