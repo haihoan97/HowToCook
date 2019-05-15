@@ -85,6 +85,7 @@ public class MainSettingFragment extends Fragment implements View.OnClickListene
                 break;
             case R.id.ln_setting_personal:
                 Intent personal_intent = new Intent(getActivity(), PersonalActivity.class);
+                personal_intent.putExtra("user", user.getUid());
                 getActivity().startActivity(personal_intent);
 
                 break;

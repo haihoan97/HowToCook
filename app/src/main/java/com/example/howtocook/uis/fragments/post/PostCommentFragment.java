@@ -90,7 +90,7 @@ public class PostCommentFragment extends Fragment {
         post_comment_recycle.setLayoutManager(manager);
         listComment = new ArrayList<>();
 
-        postCommentAdapter = new PostCommentAdapter(listComment);
+        postCommentAdapter = new PostCommentAdapter(listComment, getContext());
         post_comment_recycle.setAdapter(postCommentAdapter);
 
         initListComment();

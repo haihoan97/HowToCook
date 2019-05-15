@@ -50,24 +50,24 @@
                 android:gravity="center_vertical"
                 android:text="đã đăng thực hiện 2 giờ trước"
                 android:textSize="10sp" />
-
-
-            <Button
+            
+            <ToggleButton
                 android:id="@+id/item_share_post_follow"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:background="#5FF701"
-                android:text="+Quan tâm"
-                android:textSize="12sp"
-                android:textAllCaps="false"
+                android:background="@drawable/toggle_follow"
+                android:text=""
+                android:textOn=""
+                android:textOff=""
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
         </RelativeLayout>
 

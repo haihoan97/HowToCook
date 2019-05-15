@@ -409,7 +409,6 @@ public class AddPostActivity extends AppCompatActivity implements View.OnClickLi
                 intent.putExtra("post", post);
                 startActivity(intent);
 
-                //writePost(post);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
