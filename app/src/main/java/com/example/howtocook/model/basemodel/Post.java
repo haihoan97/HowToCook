@@ -135,7 +135,7 @@ public class Post implements Serializable {
         result.put("userId",userId);
         result.put("amthucId",amthucId);
         result.put("mucdichId", mucdichId);
-        result.put("seasonId",seasonId);
+        result.put("season",seasonId);
         result.put("postName", postName);
         result.put("mucDo", mucDo);
         result.put("khauPhan", khauPhan);

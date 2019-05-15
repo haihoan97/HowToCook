@@ -172,7 +172,7 @@ public class AddPostActivity extends AppCompatActivity implements View.OnClickLi
         lisSeason.add("mùa đông");
 
         ArrayAdapter<String> adp3 = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, lisKhauPhan);
+                android.R.layout.simple_list_item_1, lisSeason);
         add_post_season.setAdapter(adp3);
 
     }
@@ -415,7 +415,7 @@ public class AddPostActivity extends AppCompatActivity implements View.OnClickLi
                 post.setPostImage(uri.toString());
                 post.setMucDo(add_post_muc_do.getSelectedItem().toString());
                 post.setKhauPhan(add_post_khau_phan.getSelectedItem().toString());
-                post.setKhauPhan(add_post_season.getSelectedItem().toString());
+                post.setSeasonId(add_post_season.getSelectedItem().toString());
                 post.setPostDes(add_post_des.getText().toString().trim());
                 post.setPostTime(DateUtil.getcurrentDate());
                 Intent intent = new Intent(AddPostActivity.this, AddPostStepActivity.class);

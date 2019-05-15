@@ -130,10 +130,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void openSearchActivity(String searchContent, String season){
+    public void openSearchActivity( String season){
         Intent intent = new Intent(MainActivity.this, SearchActivity.class);
         intent.putExtra("season", season);
-        intent.putExtra("searchContent", searchContent);
         startActivity(intent);
 
     }
@@ -249,16 +248,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.item_search_spring:
-                openSearchActivity("no","spring");
+                openSearchActivity("mùa xuân");
                 break;
             case R.id.item_search_autumn:
-                openSearchActivity("no","autumn");
+                openSearchActivity("mùa thu");
                 break;
             case R.id.item_search_summer:
-                openSearchActivity("no","summer");
+                openSearchActivity("mùa hè");
                 break;
             case R.id.item_search_winter:
-                openSearchActivity("no","winter");
+                openSearchActivity("mùa đông");
                 break;
         }
 
