@@ -1,7 +1,6 @@
 package com.example.howtocook.uis.acticities;
 
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.example.howtocook.R;
-import com.example.howtocook.adapter.Pager_Adapter;
+import com.example.howtocook.adapter.personalpage.Pager_Adapter;
 
 public class PersonalActivity extends AppCompatActivity {
 

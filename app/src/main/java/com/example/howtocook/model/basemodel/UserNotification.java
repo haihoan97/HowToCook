@@ -1,4 +1,4 @@
-package com.example.howtocook.model;
+package com.example.howtocook.model.basemodel;
 
 import java.util.Date;
 

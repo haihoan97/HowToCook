@@ -44,19 +44,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginTop="5dp"
-                android:orientation="horizontal">
+                android:layout_marginLeft="5dp"
+                android:orientation="horizontal"
+                android:weightSum="8">
 
 
-                <Spinner
-                    android:id="@+id/search_spinner"
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_weight="6"
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Sắp xếp: "
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"/>
+                    <Spinner
+                        android:id="@+id/search_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
 
                 <Button
                     android:id="@+id/search_filter"
@@ -75,7 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Tim kiem : Ga ran"
-                android:textSize="24sp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
                 android:gravity="center_vertical"
                 android:layout_margin="5dp"/>

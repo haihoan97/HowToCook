@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.howtocook.R;
-import com.example.howtocook.adapter.ChiaSeAdapter;
+import com.example.howtocook.adapter.personalpage.ChiaSeAdapter;
 
 import java.util.ArrayList;
 

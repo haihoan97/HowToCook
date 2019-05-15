@@ -43,6 +43,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Miku "
+                        android:textSize="12sp"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
@@ -51,6 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:textSize="12sp"
                         android:text="da dang bai viet moi" />
 
                 </LinearLayout>
@@ -59,7 +61,8 @@
                     android:id="@+id/item_noti_post_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nuong Thi Bof safasfasfaffasfsafsafasfsafasfasfasfasfasfasf"
+                    android:textSize="12sp"
+                    android:text="Nuong Thi Bof"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -67,6 +70,7 @@
                     android:id="@+id/item_noti_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="12sp"
                     android:text="30 thang 4 luc 12:00" />
 
 

@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.howtocook.R;
 import com.example.howtocook.adapter.MainNotificationViewAdapter;
-import com.example.howtocook.model.UserNotification;
+import com.example.howtocook.model.basemodel.UserNotification;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

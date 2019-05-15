@@ -1,4 +1,4 @@
-package com.example.howtocook.adapter;
+package com.example.howtocook.adapter.personalpage;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

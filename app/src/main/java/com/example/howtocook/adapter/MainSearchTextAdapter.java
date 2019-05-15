@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.howtocook.R;
-import com.example.howtocook.model.Search;
+import com.example.howtocook.model.basemodel.Search;
 
 import java.util.ArrayList;
 

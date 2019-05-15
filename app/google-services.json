@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "388641647838",
+    "firebase_url": "https://howtocook-61c13.firebaseio.com",
+    "project_id": "howtocook-61c13",
+    "storage_bucket": "howtocook-61c13.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388641647838:android:f6e5d59cc65510eb",
+        "android_client_info": {
+          "package_name": "com.example.howtocook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "388641647838-01ar1bat76jusbjlk5ci5spbhj2s1csf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.howtocook",
+            "certificate_hash": "6940c59ea39079209dbcb76366a38c2bdd977ef8"
+          }
+        },
+        {
+          "client_id": "388641647838-svd8ufk9l782kvh1p1164a4d0liu9ik1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGLVJfpfA_S_JImdE_Sg02lxBvKhJ0PV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "388641647838-svd8ufk9l782kvh1p1164a4d0liu9ik1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

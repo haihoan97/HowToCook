@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.example.howtocook.R;
+import com.example.howtocook.model.basemodel.Post;
 import com.example.howtocook.utils.HeartAnimation;
 
 import java.util.ArrayList;
@@ -20,9 +21,28 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainPersonalPostAdapter extends RecyclerView.Adapter<MainPersonalPostAdapter.ViewHolder>{
 
-    ArrayList<String> listtest = new ArrayList<>();
 
-    public MainPersonalPostAdapter(ArrayList<String> listtest) {
+    private OnItemClickListener listener;
+    // Define the listener interface
+    public interface OnItemClickListener {
+        void onItemClick(View itemView, int position);
+        void onImageClick(ImageView image, int position);
+        void onAvaClick(CircleImageView imageView, int pos);
+        void onButtonClick(Button button, int pos);
+        void onTextViewClick(TextView textView, int position);
+    }
+    // Define the method that allows the parent activity or fragment to define the listener
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+    ArrayList<Post> listtest;
+
+    public MainPersonalPostAdapter(OnItemClickListener listener, ArrayList<Post> listtest) {
+        this.listener = listener;
+        this.listtest = listtest;
+    }
+
+    public MainPersonalPostAdapter(ArrayList<Post> listtest) {
         this.listtest = listtest;
     }
 
@@ -35,9 +55,12 @@ public class MainPersonalPostAdapter extends RecyclerView.Adapter<MainPersonalPo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
 
-        viewHolder.item_personal_post_name.setText(listtest.get(i));
+        Post post = listtest.get(i);
+        viewHolder.item_personal_post_name.setText(post.getPostName());
+
+        viewHolder.item_personal_post_like.setChecked(true);
         viewHolder.item_personal_post_like.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -45,6 +68,21 @@ public class MainPersonalPostAdapter extends RecyclerView.Adapter<MainPersonalPo
                     HeartAnimation a=new HeartAnimation();
                     a.animationBigger(buttonView);
                 }
+            }
+        });
+
+
+        viewHolder.item_personal_post_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onTextViewClick(viewHolder.item_personal_post_name, i);
+            }
+        });
+
+        viewHolder.item_personal_post_user_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onTextViewClick(viewHolder.item_personal_post_user_name,i);
             }
         });
     }
@@ -58,7 +96,7 @@ public class MainPersonalPostAdapter extends RecyclerView.Adapter<MainPersonalPo
         CircleImageView item_personal_post_user_ava;
         TextView item_personal_post_user_name;
         TextView item_personal_post_status;
-        Button item_personal_post_follow;
+        ToggleButton item_personal_post_follow;
         ImageView item_personal_post_img;
         TextView item_personal_post_name;
         TextView item_personal_post_des;
@@ -67,7 +105,7 @@ public class MainPersonalPostAdapter extends RecyclerView.Adapter<MainPersonalPo
         Button item_personal_post_save;
         Button item_personal_post_view_comment;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             item_personal_post_user_ava = itemView.findViewById(R.id.item_personal_post_user_ava);
@@ -82,7 +120,12 @@ public class MainPersonalPostAdapter extends RecyclerView.Adapter<MainPersonalPo
             item_personal_post_save = itemView.findViewById(R.id.item_personal_post_save);
             item_personal_post_view_comment  = itemView.findViewById(R.id.item_personal_post_view_comment);
 
-
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(itemView, getAdapterPosition());
+                }
+            });
         }
     }
 }

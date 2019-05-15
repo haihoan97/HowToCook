@@ -1,6 +1,5 @@
-package com.example.howtocook.adapter;
+package com.example.howtocook.adapter.personalpage;
 
-import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

@@ -17,46 +17,67 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="280dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/cook2" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/register_image"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/ic_account_circle_gray_24dp"/>
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/register_set_image"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:text="Chọn 1 ảnh"
+                android:textSize="14sp"
+                android:textColor="@color/mainColor"
+                android:textStyle="bold"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="90dp"
+                android:layout_marginRight="50dp"
                 android:background="#FFFFFF"
                 android:orientation="vertical">
 
                 <EditText
+                    android:id="@+id/edt_user_fullname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/notice"
                     android:drawablePadding="10dp"
+                    android:textSize="14sp"
+                    android:singleLine="true"
                     android:hint=" Họ tên"/>
 
                 <EditText
+                    android:id="@+id/edt_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/user"
+                    android:textSize="14sp"
+                    android:singleLine="true"
                     android:drawablePadding="10dp"
                     android:hint="Email hoặc tài khoản" />
 
                 <EditText
+                    android:id="@+id/edt_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:drawableLeft="@drawable/locked"
+                    android:textSize="14sp"
+                    android:singleLine="true"
+                    android:password="true"
                     android:drawablePadding="10dp"
                     android:hint="Mật khẩu" />
             </LinearLayout>
@@ -70,6 +91,7 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/btn_register"
                     android:layout_width="210dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button2"
@@ -106,27 +128,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_gravity="center_vertical"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
 
-                <com.google.android.gms.common.SignInButton
-                    android:layout_width="140dp"
-                    android:layout_height="match_parent"
-                    android:drawablePadding="10dp"
-                    android:paddingLeft="10dp"
-                    android:text="Google"
-                    android:textColor="#FFFFFF">
-
-                </com.google.android.gms.common.SignInButton>
-
 
                 <com.facebook.login.widget.LoginButton
-                    android:layout_width="140dp"
+                    android:layout_width="210dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
                     android:drawablePadding="10dp"
                     android:paddingLeft="10dp" />
 

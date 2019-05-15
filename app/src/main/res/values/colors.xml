@@ -7,4 +7,6 @@
     <color name="black">#000000</color>
     <color name="unchecknoti">#bcc3dd</color>
     <color name="mainColor">#2b7ce5</color>
+    <color name="comment">#e6eaf2</color>
+    <color name="red">#ff4400</color>
 </resources>

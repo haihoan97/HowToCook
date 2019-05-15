@@ -3,6 +3,15 @@
     package="com.example.howtocook">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +20,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".uis.acticities.PersonalActivity"></activity>
+        <activity android:name=".uis.acticities.addpostac.AddPostFilterActivity"></activity>
+        <activity android:name=".uis.acticities.addpostac.AddPostStepActivity" />
+        <activity android:name=".uis.acticities.AddPostActivity" />
+        <activity
+            android:name=".uis.acticities.PersonalPostActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".uis.acticities.PersonalActivity" />
         <activity android:name=".uis.acticities.RegisterActivity" />
 
         <meta-data
@@ -34,15 +49,15 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".uis.acticities.LoginActivity" />
-        <activity android:name=".uis.acticities.SearchActivity" />
-        <activity android:name=".uis.acticities.MainActivity">
+        <activity android:name=".uis.acticities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".uis.acticities.SearchActivity" />
+        <activity android:name=".uis.acticities.MainActivity" />
     </application>
 
 </manifest>

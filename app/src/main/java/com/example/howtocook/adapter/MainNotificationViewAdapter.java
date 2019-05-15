@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.howtocook.R;
-import com.example.howtocook.model.UserNotification;
+import com.example.howtocook.model.basemodel.UserNotification;
 
 import java.util.ArrayList;
 

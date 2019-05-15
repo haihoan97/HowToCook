@@ -21,13 +21,13 @@
         <LinearLayout
             android:id="@+id/ln_setting_personal"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_setting_ava"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_margin="10dp"
                 android:adjustViewBounds="false"
                 android:src="@drawable/miku" />
@@ -45,7 +45,7 @@
                     android:gravity="center"
                     android:text="Miku"
                     android:textColor="#000"
-                    android:textSize="24dp"
+                    android:textSize="14dp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -85,7 +85,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ca nhan"
+            android:text="Cá nhân"
             android:textColor="@android:color/black"
             android:textSize="15sp" />
 
@@ -110,7 +110,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="6"
-                android:text="Bai viet yeu thich"
+                android:text="Bài viết yêu thích"
                 android:textColor="@android:color/black"
                 android:textSize="14sp" />
 
@@ -143,7 +143,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="6"
-                android:text="Bai viet da luu"
+                android:text="Bài viết đã lưu"
                 android:textColor="@android:color/black"
                 android:textSize="14sp" />
 
@@ -176,7 +176,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="6"
-                android:text="Luu nhap"
+                android:text="Lưu nháp"
                 android:textColor="@android:color/black"
                 android:textSize="14sp" />
 
@@ -197,7 +197,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cai dat"
+            android:text="Cài đặt"
             android:textColor="@android:color/black"
             android:textSize="15sp" />
 
@@ -222,7 +222,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="6"
-                android:text="Phan hoi"
+                android:text="Phản hồi"
                 android:textColor="@android:color/black"
                 android:textSize="14sp" />
 
@@ -255,7 +255,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="6"
-                android:text="Thong bao"
+                android:text="Thông báo"
                 android:textColor="@android:color/black"
                 android:textSize="14sp" />
 
@@ -288,7 +288,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="6"
-                android:text="Language"
+                android:text="Ngôn ngữ"
                 android:textColor="@android:color/black"
                 android:textSize="14sp" />
 
@@ -329,7 +329,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="6"
-                android:text="Dang xuat"
+                android:text="Đăng xuất"
                 android:textColor="@android:color/black"
                 android:textSize="14sp" />
 

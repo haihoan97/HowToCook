@@ -1,4 +1,4 @@
-package com.example.howtocook.adapter;
+package com.example.howtocook.adapter.personalpage;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.example.howtocook.R;
 
@@ -45,6 +46,7 @@ public class TheoDoiAdapter extends RecyclerView.Adapter<TheoDoiAdapter.TheoDoiA
     public class TheoDoiAdapterHolder extends RecyclerView.ViewHolder{
         CircleImageView circleImageView;
         TextView textViewUsername, textViewCongThuc, textViewQuanTam;
+        ToggleButton button_follow;
 
         public TheoDoiAdapterHolder(@NonNull View itemView) {
             super(itemView);
@@ -52,6 +54,7 @@ public class TheoDoiAdapter extends RecyclerView.Adapter<TheoDoiAdapter.TheoDoiA
             textViewUsername = itemView.findViewById(R.id.textview_username);
             textViewCongThuc = itemView.findViewById(R.id.textview_cong_thuc);
             textViewQuanTam = itemView.findViewById(R.id.textview_quan_tam);
+            button_follow = itemView.findViewById(R.id.button_follow);
         }
     }
 }

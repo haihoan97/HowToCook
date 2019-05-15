@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
-                android:text="Them bai viet"
+                android:text="Thêm bài viết"
                 android:textAllCaps="false"
                 android:background="@drawable/button"/>
         </LinearLayout>

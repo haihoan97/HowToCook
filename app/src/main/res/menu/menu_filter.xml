@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="all">
+        <item
+            android:title="mùa xuân"
+            app:showAsAction="always">
+
+        </item>
+
+        <item
+            android:title="mùa hè"
+            app:showAsAction="always">
+
+        </item>
+        <item
+            android:title="mùa thu"
+            app:showAsAction="always">
+
+        </item>
+
+        <item
+            android:title="mùa đông"
+            app:showAsAction="always">
+
+        </item>
+    </group>
+
+</menu>

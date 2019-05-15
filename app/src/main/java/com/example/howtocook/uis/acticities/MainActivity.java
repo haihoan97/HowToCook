@@ -12,6 +12,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,11 +21,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.request.RequestOptions;
 import com.example.howtocook.R;
 import com.example.howtocook.adapter.MainSearchTextAdapter;
 import com.example.howtocook.adapter.MainViewPagerAdapter;
-import com.example.howtocook.model.Search;
-import com.example.howtocook.model.UserNotification;
+import com.example.howtocook.model.basemodel.Search;
+import com.example.howtocook.model.basemodel.UserNotification;
+import com.example.howtocook.model.basemodel.Users;
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.Profile;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -47,6 +57,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private MainViewPagerAdapter viewPagerAdapter;
     private MainSearchTextAdapter searchTextAdapter;
 
+    private Profile profile;
+    private AccessToken accessToken;
+    private Users currentUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //viewpager
         viewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setOffscreenPageLimit(4);
 
         //toolbar
         setSupportActionBar(main_toolbar);
@@ -94,8 +109,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         item_search_winter.setOnClickListener(this);
 
 
-
     }
+
 
     public void addNotificationBadge(int noti){
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
@@ -109,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void initSearchContent(){
         for (int i = 0; i < 5; i++){
-            Search s = new Search(i+1, "Ga ran "+i, 12, "");
+            Search s = new Search("", "Ga ran "+i,  "");
             searchList.add(s);
         }
 
@@ -122,6 +137,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
 
     }
+
+
+
+
 
     ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
@@ -171,8 +190,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     return true;
                 case R.id.main_personal_post:
                     viewPager.setCurrentItem(1);
-                    main_toolbar.setTitle("Tim kiem");
-                    main_toolbar.setNavigationIcon(R.drawable.ic_search_white_24dp);
+                    main_toolbar.setTitle("Bai viet");
+                    main_toolbar.setNavigationIcon(R.drawable.ic_post_black_24dp);
                     return true;
                 case R.id.main_notification:
                     viewPager.setCurrentItem(2);
@@ -243,5 +262,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        super.onBackPressed();
     }
 }
