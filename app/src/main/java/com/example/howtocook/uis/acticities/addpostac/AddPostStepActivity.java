@@ -41,6 +41,7 @@ import com.example.howtocook.adapter.addpostadapter.AddPostStepAdapter;
 import com.example.howtocook.adapter.postadapter.PostResourceAdapter;
 import com.example.howtocook.adapter.postadapter.PostStepAdapter;
 import com.example.howtocook.adapter.postadapter.PostStepUriAdapter;
+import com.example.howtocook.model.basemodel.Follow;
 import com.example.howtocook.model.basemodel.Images;
 import com.example.howtocook.model.basemodel.Post;
 import com.example.howtocook.model.basemodel.PostStep;
@@ -55,8 +56,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -148,7 +152,7 @@ public class AddPostStepActivity extends AppCompatActivity implements View.OnCli
 
         Intent intent = getIntent();
         post = (Post) intent.getSerializableExtra("post");
-        Toast.makeText(this, "Post name : " + post.getPostImage(), Toast.LENGTH_SHORT).show();
+        Log.d("aaa", post.getPostImage());
         postStep = new PostStep();
         ArrayList<Images> listImg = new ArrayList<>();
         postStep.setListImg(listImg);
@@ -158,6 +162,7 @@ public class AddPostStepActivity extends AppCompatActivity implements View.OnCli
         add_post_step_add_step.setOnClickListener(this);
         add_post_step_next.setOnClickListener(this);
         remove_post_step_add_resource.setOnClickListener(this);
+        add_post_step_back.setOnClickListener(this);
 
 
         add_post_step2.setOnTouchListener(new View.OnTouchListener() {
@@ -188,7 +193,6 @@ public class AddPostStepActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onItemClick(View itemView) {
                 int i = add_post_step_recycle.getChildAdapterPosition(itemView);
-                Log.d("rec", " recycle pos: " + i);
             }
 
             @Override
@@ -611,6 +615,10 @@ public class AddPostStepActivity extends AppCompatActivity implements View.OnCli
                 listResource.remove(listResource.size() - 1);
                 addPostResourceAdapter.notifyDataSetChanged();
                 break;
+            case R.id.add_post_step_back:
+                //deletePost(post.getPostId());
+                finish();
+                break;
 
             case R.id.add_post_step_add_step:
                 PostStep postStep = new PostStep();
@@ -651,6 +659,7 @@ public class AddPostStepActivity extends AppCompatActivity implements View.OnCli
                         return;
                     }
                 }
+                writePost(post);
                 writePostSource(listResource);
                 for (int i = 0; i < listStep.size(); i++) {
 
@@ -668,6 +677,28 @@ public class AddPostStepActivity extends AppCompatActivity implements View.OnCli
         }
 
     }
+
+//    public void deletePost(final String postId){
+//            mDatabaseReference = FirebaseDatabase.getInstance().getReference("Post");
+//            mDatabaseReference.orderByChild("postId").equalTo(postId).addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                        Post post = snapshot.getValue(Post.class);
+//                        if (post.getPostId().equals(postId)){
+//                            mDatabaseReference.child(snapshot.getKey()).removeValue();
+//                        }
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//                    Log.e("Loi", "");
+//                }
+//            });
+//
+//
+//    }
 
     private void showDialogSuccess() {
         final Dialog dialog = new Dialog(this);
@@ -707,5 +738,41 @@ public class AddPostStepActivity extends AppCompatActivity implements View.OnCli
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), inImage, "Title", null);
         return Uri.parse(path);
+    }
+    private void writePost(Post post){
+        FirebaseUser curren_user = mAuth.getCurrentUser();
+        // lay gia tri nhap tu activty
+        post.setUserId(curren_user.getUid());
+
+
+        // day du lieu len firebase
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+        String key = reference.child("Post").push().getKey();
+        post.setPostId(key);
+
+        Map<String, Object> post_values = post.toMap();
+
+        Map<String, Object> child_add = new HashMap<>();
+        child_add.put("/Post/"+key, post_values);
+
+        Task<Void> task = reference.updateChildren(child_add);
+
+        if(task.isSuccessful() == false){
+            progressDialog.dismiss();
+
+
+
+        } else {
+            Log.e("aaa", "onCompleteAddUser: Failed=" + task.getException().getMessage());
+
+            progressDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        //deletePost(post.getPostId());
+        super.onBackPressed();
     }
 }

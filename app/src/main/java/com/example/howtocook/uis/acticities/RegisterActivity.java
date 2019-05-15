@@ -61,6 +61,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     EditText edt_username;
     EditText edt_password;
     Button btn_register;
+    Button register_login;
 
     Bitmap imgAvaBitmap = null;
 
@@ -89,6 +90,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         edt_password = findViewById(R.id.edt_password);
         edt_username = findViewById(R.id.edt_username);
         btn_register = findViewById(R.id.btn_register);
+        register_login = findViewById(R.id.register_login);
 
         firebase_auth = FirebaseAuth.getInstance();
         mStorageReference = FirebaseStorage.getInstance().getReference("userava");
@@ -96,6 +98,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         register_set_image.setOnClickListener(this);
         btn_register.setOnClickListener(this);
+        register_login.setOnClickListener(this);
 
 
     }
@@ -109,6 +112,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             case R.id.btn_register:
                 uploadFile();
                 break;
+            case R.id.register_login:
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
         }
     }
 

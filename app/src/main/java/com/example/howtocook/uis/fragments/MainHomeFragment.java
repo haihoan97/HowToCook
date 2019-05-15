@@ -1,6 +1,7 @@
 package com.example.howtocook.uis.fragments;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -73,6 +74,7 @@ public class MainHomeFragment extends Fragment {
 
 
     HeartAnimation animation;
+    ProgressDialog progressDialog;
 
     public MainHomeFragment() {
         // Required empty public constructor
@@ -104,6 +106,8 @@ public class MainHomeFragment extends Fragment {
         animation = new HeartAnimation();
 
         firebase_database = FirebaseDatabase.getInstance();
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.show();
 
         setUserInfo(currentUser.getUid());
 
@@ -413,6 +417,7 @@ public class MainHomeFragment extends Fragment {
                         }
                     });
                     postAdapter2.notifyDataSetChanged();
+                    progressDialog.dismiss();
                 }
 
                 @Override

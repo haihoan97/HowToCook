@@ -361,7 +361,7 @@ public class AddPostActivity extends AppCompatActivity implements View.OnClickLi
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     getDownloadIamgeUri(fileReference);
-                    Toast.makeText(AddPostActivity.this, "them thanh cong : ", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(AddPostActivity.this, "them thanh cong : ", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
 
 
@@ -397,7 +397,7 @@ public class AddPostActivity extends AppCompatActivity implements View.OnClickLi
         file_url.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Log.d("url", uri.toString());
+                //Log.d("url", uri.toString());
                 Post post = new Post();
                 post.setPostName(add_post_name.getText().toString().trim());
                 post.setPostImage(uri.toString());
@@ -405,8 +405,11 @@ public class AddPostActivity extends AppCompatActivity implements View.OnClickLi
                 post.setKhauPhan(add_post_khau_phan.getSelectedItem().toString());
                 post.setPostDes(add_post_des.getText().toString().trim());
                 post.setPostTime(DateUtil.getcurrentDate());
+                Intent intent = new Intent(AddPostActivity.this, AddPostStepActivity.class);
+                intent.putExtra("post", post);
+                startActivity(intent);
 
-                writePost(post);
+                //writePost(post);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -418,37 +421,7 @@ public class AddPostActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    private void writePost(Post post){
-        FirebaseUser curren_user = mAuth.getCurrentUser();
-        // lay gia tri nhap tu activty
-        post.setUserId(curren_user.getUid());
 
-
-        // day du lieu len firebase
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-
-        String key = reference.child("Post").push().getKey();
-        post.setPostId(key);
-
-        Map<String, Object> post_values = post.toMap();
-
-        Map<String, Object> child_add = new HashMap<>();
-        child_add.put("/Post/"+key, post_values);
-
-        Task<Void> task = reference.updateChildren(child_add);
-
-        if(task.isSuccessful() == false){
-            progressDialog.dismiss();
-            Intent intent = new Intent(this, AddPostStepActivity.class);
-            intent.putExtra("post", post);
-            startActivity(intent);
-
-        } else {
-            Log.e("aaa", "onCompleteAddUser: Failed=" + task.getException().getMessage());
-
-            progressDialog.dismiss();
-        }
-    }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {

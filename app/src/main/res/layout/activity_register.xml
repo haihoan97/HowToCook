@@ -99,6 +99,7 @@
                     android:textColor="#FFFF" />
 
                 <Button
+                    android:id="@+id/register_login"
                     android:layout_width="210dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"

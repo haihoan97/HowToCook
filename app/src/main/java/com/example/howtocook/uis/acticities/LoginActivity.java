@@ -265,7 +265,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         txt_message_fail = dialog.findViewById(R.id.txt_message_fail);
 
         txt_message_fail.setText("Có vẻ như "+DangNhap_EditText_Email.getText().toString()+" không khớp với tài" +
-                "khoản hiện tại. Nếu bạn chưa có tài khoản MyTour, bạn có thể tạo tài khoản ngay bây giờ.");
+                "khoản hiện tại. Nếu bạn chưa có tài khoản, bạn có thể tạo tài khoản ngay bây giờ.");
 
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override

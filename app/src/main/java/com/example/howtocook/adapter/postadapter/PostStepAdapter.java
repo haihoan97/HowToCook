@@ -46,6 +46,7 @@ public class PostStepAdapter extends RecyclerView.Adapter<PostStepAdapter.ViewHo
         if (listImg != null){
             ImagePagerAdapter imagePagerAdapter = new ImagePagerAdapter(listImg, context, ImageView.ScaleType.CENTER_CROP );
             viewHolder.post_step_view_img.setAdapter(imagePagerAdapter);
+            viewHolder.post_step_view_img.setCurrentItem(0);
             viewHolder.post_step_count_img.setText((viewHolder.post_step_view_img.getCurrentItem() + 1)+"/"+listImg.size());
 
             final int count = listImg.size();
