@@ -61,25 +61,28 @@
                         android:text="đã đăng công thức 2 giờ trước"
                         android:textSize="10sp" />
 
-                    <Button
+                    <ToggleButton
                         android:id="@+id/personal_post_follow"
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginBottom="8dp"
-                        android:background="#5FF701"
-                        android:text="+Quan tâm"
-                        android:textAllCaps="false"
+                        android:background="@drawable/toggle_follow"
+                        android:text=""
+                        android:textOn=""
+                        android:textOff=""
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
 
                 </RelativeLayout>
 
                 <TextView
+                    android:id="@+id/personal_post_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -91,6 +94,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/personal_post_des"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -101,8 +105,9 @@
                     android:textSize="12sp" />
 
                 <ImageView
+                    android:id="@+id/personal_post_ava"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="250dp"
                     android:layout_margin="5dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/beef" />

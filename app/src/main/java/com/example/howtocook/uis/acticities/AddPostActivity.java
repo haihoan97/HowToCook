@@ -43,6 +43,7 @@ import com.example.howtocook.model.basemodel.Post;
 import com.example.howtocook.model.basemodel.PostStep;
 import com.example.howtocook.model.basemodel.Prepare;
 import com.example.howtocook.uis.acticities.addpostac.AddPostStepActivity;
+import com.example.howtocook.utils.DateUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -402,8 +403,8 @@ public class AddPostActivity extends AppCompatActivity implements View.OnClickLi
                 post.setPostImage(uri.toString());
                 post.setMucDo(add_post_muc_do.getSelectedItem().toString());
                 post.setKhauPhan(add_post_khau_phan.getSelectedItem().toString());
-                Date date = new Date(System.currentTimeMillis());
-                post.setPostTime(date.toString());
+                post.setPostDes(add_post_des.getText().toString().trim());
+                post.setPostTime(DateUtil.getcurrentDate());
 
                 writePost(post);
             }

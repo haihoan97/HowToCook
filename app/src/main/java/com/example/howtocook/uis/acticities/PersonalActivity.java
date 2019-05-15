@@ -1,5 +1,6 @@
 package com.example.howtocook.uis.acticities;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
@@ -38,4 +39,5 @@ public class PersonalActivity extends AppCompatActivity {
         tabLayout.setTabsFromPagerAdapter(adapter);
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
     }
+
 }

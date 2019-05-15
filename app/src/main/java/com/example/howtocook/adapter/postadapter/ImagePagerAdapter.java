@@ -52,9 +52,10 @@ public class ImagePagerAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View itemView = inflater.inflate(R.layout.item_personalpost_image, container, false);
 
-        ImageView imageView = (ImageView) itemView.findViewById(R.id.item_personal_img);
+        ImageView imageView = itemView.findViewById(R.id.item_personal_img);
         final ProgressBar progressBar = itemView.findViewById(R.id.item_personal_progressbar);
         imageView.setScaleType(scaleType);
+        progressBar.setVisibility(View.VISIBLE);
         Glide.with(context).load(listImg.get(position).getImgLink()).listener(new RequestListener<Drawable>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {

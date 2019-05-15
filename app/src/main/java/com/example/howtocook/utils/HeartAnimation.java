@@ -39,7 +39,7 @@ public class HeartAnimation {
         animation1.setDuration(300);
         AnimatorSet animatorSet = new AnimatorSet();
 
-        animatorSet.play(animationx).with(rotation).with(animation2).with(animation3).before(animation4).before(animation5);
+        animatorSet.play(animationx).with(animation2).with(animation3).before(animation4).before(animation5);
         animatorSet.start();
     }
 }

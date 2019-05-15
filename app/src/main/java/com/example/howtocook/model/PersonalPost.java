@@ -6,14 +6,14 @@ import com.example.howtocook.model.basemodel.Users;
 
 import java.io.Serializable;
 
-public class PesonalPost implements Serializable {
+public class PersonalPost implements Serializable {
 
     private Post post;
     private Users users;
-    private Likes likes;
+    private int countLike;
 
 
-    public PesonalPost() {
+    public PersonalPost() {
     }
 
     public Post getPost() {
@@ -32,11 +32,11 @@ public class PesonalPost implements Serializable {
         this.users = users;
     }
 
-    public Likes getLikes() {
-        return likes;
+    public int getCountLike() {
+        return countLike;
     }
 
-    public void setLikes(Likes likes) {
-        this.likes = likes;
+    public void setCountLike(int countLike) {
+        this.countLike = countLike;
     }
 }

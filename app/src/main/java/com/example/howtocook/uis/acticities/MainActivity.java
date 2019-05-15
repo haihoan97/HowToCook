@@ -266,7 +266,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onBackPressed() {
-
+        finish();
+        System.exit(0);
         super.onBackPressed();
     }
 }

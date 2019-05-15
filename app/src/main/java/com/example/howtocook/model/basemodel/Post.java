@@ -17,7 +17,17 @@ public class Post implements Serializable {
     private String khauPhan;
     private String postImage;
     private String postTime;
+    private String postDes;
     private int view;
+    private int countLike;
+
+    public int getCountLike() {
+        return countLike;
+    }
+
+    public void setCountLike(int countLike) {
+        this.countLike = countLike;
+    }
 
     public Post() {
     }
@@ -110,6 +120,14 @@ public class Post implements Serializable {
         this.view = view;
     }
 
+    public String getPostDes() {
+        return postDes;
+    }
+
+    public void setPostDes(String postDes) {
+        this.postDes = postDes;
+    }
+
     @Exclude
     public Map<String, Object> toMap(){
         Map<String, Object> result = new HashMap<>();
@@ -124,6 +142,8 @@ public class Post implements Serializable {
         result.put("postImage",postImage);
         result.put("postTime", postTime);
         result.put("view", view);
+        result.put("like", countLike);
+        result.put("postDes", postDes);
 
         return result;
     }

@@ -9,7 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.bumptech.glide.Glide;
 import com.example.howtocook.R;
+import com.example.howtocook.model.TopUserFollow;
+import com.example.howtocook.model.basemodel.Follow;
+import com.example.howtocook.model.basemodel.Users;
 
 import java.util.ArrayList;
 
@@ -17,10 +21,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TheoDoiAdapter extends RecyclerView.Adapter<TheoDoiAdapter.TheoDoiAdapterHolder> {
 
-    private ArrayList<String> arr;
+    private ArrayList<TopUserFollow> arr;
     private Context context;
 
-    public TheoDoiAdapter(ArrayList<String> arr, Context context) {
+    public TheoDoiAdapter(ArrayList<TopUserFollow> arr, Context context) {
         this.arr = arr;
         this.context = context;
     }
@@ -35,7 +39,22 @@ public class TheoDoiAdapter extends RecyclerView.Adapter<TheoDoiAdapter.TheoDoiA
 
     @Override
     public void onBindViewHolder(@NonNull TheoDoiAdapterHolder theoDoiAdapterHolder, int i) {
-        theoDoiAdapterHolder.textViewUsername.setText(arr.get(i));
+
+        Users users = arr.get(i).getUsers();
+        ArrayList<Follow> list = arr.get(i).getListIsFollowed();
+        if (users!= null){
+            theoDoiAdapterHolder.textViewUsername.setText(users.getFullName());
+            if (context != null){
+                Glide.with(context).load(users.getUserImg()).into(theoDoiAdapterHolder.circleImageView);
+            }else{
+
+            }
+
+        }
+        if (list != null){
+            theoDoiAdapterHolder.textViewQuanTam.setText(list.size()+" người theo dõi");
+        }
+
     }
 
     @Override

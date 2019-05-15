@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 import com.example.howtocook.R;
 import com.example.howtocook.adapter.personalpage.TheoDoiAdapter;
+import com.example.howtocook.model.TopUserFollow;
+import com.example.howtocook.model.basemodel.Follow;
 
 import java.util.ArrayList;
 
@@ -19,7 +21,7 @@ import java.util.ArrayList;
  */
 public class TheoDoiFragment extends Fragment {
 
-    ArrayList<String> arr;
+    ArrayList<TopUserFollow> arr;
     RecyclerView recyclerView;
     TheoDoiAdapter theoDoiAdapter;
 
@@ -33,9 +35,6 @@ public class TheoDoiFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_theo_doi,container,false);
         arr = new ArrayList<>();
-        arr.add("Hải Hoàn");
-        arr.add("Hoàng Hiệp");
-        arr.add("Văn Lâm");
         recyclerView = view.findViewById(R.id.recyclerView);
         theoDoiAdapter = new TheoDoiAdapter(arr, getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());

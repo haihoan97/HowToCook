@@ -12,6 +12,11 @@ public class Likes {
     private String userId;
 
 
+    public Likes(String postId, String userId) {
+        this.postId = postId;
+        this.userId = userId;
+    }
+
     public Likes() {
     }
 

@@ -15,13 +15,19 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.howtocook.R;
 import com.example.howtocook.adapter.MainPersonalPostAdapter;
 import com.example.howtocook.adapter.personalpage.CongThucAdapter;
+import com.example.howtocook.model.PersonalPost;
 import com.example.howtocook.model.basemodel.Post;
 import com.example.howtocook.uis.acticities.PersonalActivity;
 import com.example.howtocook.uis.acticities.PersonalPostActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -37,8 +43,12 @@ public class CongThucFragment extends Fragment {
     private RecyclerView recyclerView;
     private CongThucAdapter congThucAdapter;
 
-    ArrayList<Post> listPost;
+    ArrayList<PersonalPost> listPost;
     MainPersonalPostAdapter adapter;
+
+    FirebaseDatabase firebase_database;
+    DatabaseReference database_reference;
+    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
     private static final String TAG = "CongThucFragment";
 
@@ -56,43 +66,21 @@ public class CongThucFragment extends Fragment {
         recyclerView.setLayoutManager(manager);
         listPost = new ArrayList<>();
 
-        adapter = new MainPersonalPostAdapter(new MainPersonalPostAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View itemView, int position) {
-                Intent postIntent = new Intent(getActivity(), PersonalPostActivity.class);
-                startActivity(postIntent);
-            }
+        adapter = new MainPersonalPostAdapter(getContext(),currentUser.getUid(), new MainPersonalPostAdapter.OnItemClickListener() {
 
             @Override
-            public void onImageClick(ImageView image, int position) {
-                switch (image.getId()){
-                    case R.id.item_personal_post_img:
-                        Toast.makeText(getContext(), "Img Click"+position, Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onAvaClick(CircleImageView imageView, int pos) {
+            public void onItemClick(View itemView) {
 
             }
 
             @Override
-            public void onButtonClick(Button button, int pos) {
+            public void onLikeButtonClick(View itemView, ToggleButton button, boolean isCheck) {
 
             }
 
             @Override
-            public void onTextViewClick(TextView textView, int position) {
-                switch (textView.getId()){
-                    case R.id.item_personal_post_name:
-                        Toast.makeText(getContext(), textView.getText().toString(), Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.item_personal_post_user_name:
-                        Intent personal_intent = new Intent(getActivity(), PersonalActivity.class);
-                        startActivity(personal_intent);
-                        break;
+            public void onFollowButtonClick(View itemView, ToggleButton button, boolean isCheck) {
 
-                }
             }
         } , listPost);
         recyclerView.setAdapter(adapter);

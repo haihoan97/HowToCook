@@ -157,6 +157,7 @@ public class AddPostStepActivity extends AppCompatActivity implements View.OnCli
         add_post_step_delete_step.setOnClickListener(this);
         add_post_step_add_step.setOnClickListener(this);
         add_post_step_next.setOnClickListener(this);
+        remove_post_step_add_resource.setOnClickListener(this);
 
 
         add_post_step2.setOnTouchListener(new View.OnTouchListener() {
@@ -497,7 +498,7 @@ public class AddPostStepActivity extends AppCompatActivity implements View.OnCli
 
 
         // day du lieu len firebase
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Post/"+post.getPostId()+"/PostStep/"+ images.getPostStepId());
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Post/" + post.getPostId() + "/PostStep/" + images.getPostStepId());
 
         String key = reference.child("Images").push().getKey();
         images.setImageId(key);
@@ -524,7 +525,7 @@ public class AddPostStepActivity extends AppCompatActivity implements View.OnCli
 
         postStep.setPostId(post.getPostId());
         // day du lieu len firebase
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Post/"+post.getPostId());
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Post/" + post.getPostId());
 
         String key = reference.child("PostStep").push().getKey();
         postStep.setPostStepId(key);
@@ -561,7 +562,7 @@ public class AddPostStepActivity extends AppCompatActivity implements View.OnCli
 
 
             // day du lieu len firebase
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Post/"+post.getPostId());
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Post/" + post.getPostId());
 
             String key = reference.child("Prepare").push().getKey();
             prepare.setPrepareId(key);
@@ -593,8 +594,21 @@ public class AddPostStepActivity extends AppCompatActivity implements View.OnCli
             case R.id.add_post_step_add_resource:
                 String sourceName = add_post_step_resources_name.getText().toString().trim();
                 String sourceAmount = add_post_step_resources_weight.getText().toString().trim();
+                if (sourceName.equals("")){
+                    add_post_step_resources_name.setError("Bạn chưa điền tên nguyên liệu");
+                    return;
+                }
+                if (sourceAmount.equals("")){
+                    add_post_step_resources_weight.setError("Bạn chưa điền tên nguyên liệu");
+                    return;
+                }
                 Prepare prepare = new Prepare("", "", sourceName, sourceAmount);
                 listResource.add(prepare);
+                addPostResourceAdapter.notifyDataSetChanged();
+                break;
+
+            case R.id.remove_post_step_add_resource:
+                listResource.remove(listResource.size() - 1);
                 addPostResourceAdapter.notifyDataSetChanged();
                 break;
 
@@ -608,38 +622,54 @@ public class AddPostStepActivity extends AppCompatActivity implements View.OnCli
             case R.id.add_post_step_next:
                 progressDialog = new ProgressDialog(this);
                 progressDialog.show();
+
+                if (listResource.size() < 2) {
+                    Toast.makeText(this, "Bạn chưa thêm tối thiểu 2 nguyên liệu", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                    return;
+                }
+                if (listStep.size() < 2) {
+                    Toast.makeText(this, "Bạn phải thêm tối thiểu 2 bước", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                    return;
+                }
+
+                for (int i = 0; i < listStep.size(); i++) {
+
+                    PostStep postStep1 = listStep.get(i);
+                    View view = add_post_step_recycle.getChildAt(i);
+                    EditText editText = view.findViewById(R.id.add_post_step_des);
+
+                    if (editText.getText().toString().trim().isEmpty()) {
+                        editText.setError("Banj chua dien mo ta");
+                        progressDialog.dismiss();
+                        return;
+                    }
+                    if (postStep1.getListImg().size() == 0 || postStep1.getListImg() == null) {
+                        Toast.makeText(this, "Bạn chưa thêm ảnh bước " + (i+1), Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                        return;
+                    }
+                }
                 writePostSource(listResource);
                 for (int i = 0; i < listStep.size(); i++) {
 
                     PostStep postStep1 = listStep.get(i);
                     View view = add_post_step_recycle.getChildAt(i);
                     EditText editText = view.findViewById(R.id.add_post_step_des);
-                    if (editText.getText().toString().trim().isEmpty()) {
-                        editText.setError("Banj chua dien mo ta");
-                    } else {
-                        postStep1.setStepContent(editText.getText().toString().trim());
-                        postStep1.setStep(i);
-                        writePostStep(postStep1);
-
-
-                    }
-
-                    for (int j = 0; j < postStep1.getListImg().size(); j++) {
-
-                        Log.d("aaaimg " + j, postStep1.getListImg().get(j).getImgLink());
-                    }
-
-
+                    postStep1.setStepContent(editText.getText().toString().trim());
+                    postStep1.setStep(i);
+                    writePostStep(postStep1);
                 }
                 showDialogSuccess();
                 progressDialog.dismiss();
-
                 break;
 
         }
+
     }
 
-    private void showDialogSuccess(){
+    private void showDialogSuccess() {
         final Dialog dialog = new Dialog(this);
         dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.custom_dialog_success);
@@ -658,7 +688,7 @@ public class AddPostStepActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onClick(View v) {
                 dialog.cancel();
-                Intent personal_intent = new Intent(AddPostStepActivity.this, PersonalActivity.class);
+                Intent personal_intent = new Intent(AddPostStepActivity.this, MainActivity.class);
                 startActivity(personal_intent);
                 AddPostStepActivity.this.finish();
             }

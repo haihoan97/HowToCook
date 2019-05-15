@@ -14,6 +14,11 @@ public class Follow implements Serializable {
     public Follow() {
     }
 
+    public Follow(String userFollow, String userIsFollowed) {
+        this.userFollow = userFollow;
+        this.userIsFollowed = userIsFollowed;
+    }
+
     public String getFollowId() {
         return followId;
     }

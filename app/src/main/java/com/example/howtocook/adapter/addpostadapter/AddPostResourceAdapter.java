@@ -54,13 +54,6 @@ public class AddPostResourceAdapter extends RecyclerView.Adapter<AddPostResource
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
 
-        viewHolder.item_add_post_delete_resource.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int pos = viewHolder.getAdapterPosition();
-                listener.onImageClick(viewHolder.item_add_post_delete_resource, pos);
-            }
-        });
 
     }
 
