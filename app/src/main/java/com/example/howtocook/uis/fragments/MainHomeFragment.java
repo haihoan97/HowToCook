@@ -57,6 +57,7 @@ public class MainHomeFragment extends Fragment {
     private RecyclerView home_top_user;
 
     private TextView home_user_name;
+    private TextView home_user_info;
     private CircleImageView home_user_ava;
 
 
@@ -99,6 +100,7 @@ public class MainHomeFragment extends Fragment {
         home_top_user = view.findViewById(R.id.home_top_user);
         home_user_name = view.findViewById(R.id.home_user_name);
         home_user_ava = view.findViewById(R.id.home_user_ava);
+        home_user_info = view.findViewById(R.id.home_user_info);
 
         listViewPost = new ArrayList<>();
         listUser = new ArrayList<>();
@@ -326,6 +328,19 @@ public class MainHomeFragment extends Fragment {
                     if (getActivity() != null) {
                         Glide.with(getActivity()).load(users.getUserImg()).into(home_user_ava);
                     }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.e("Loi", "Khong  the lay ve thong tin user");
+                }
+            });
+
+            database_reference = firebase_database.getReference("Post");
+            database_reference.orderByChild("userId").equalTo(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    home_user_info.setText(dataSnapshot.getChildrenCount() + " bài viết");
                 }
 
                 @Override

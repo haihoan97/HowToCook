@@ -70,6 +70,7 @@ public class AddPostActivity extends AppCompatActivity implements View.OnClickLi
 
     Spinner add_post_muc_do;
     Spinner add_post_khau_phan;
+    Spinner add_post_season;
 
     NestedScrollView add_post_chi_tiet;
 
@@ -112,6 +113,7 @@ public class AddPostActivity extends AppCompatActivity implements View.OnClickLi
 
         add_post_muc_do = findViewById(R.id.add_post_muc_do);
         add_post_khau_phan = findViewById(R.id.add_post_khau_phan);
+        add_post_season = findViewById(R.id.add_post_season);
         add_post_chi_tiet = findViewById(R.id.add_post_chi_tiet);
         add_post_chi_tiet_next = findViewById(R.id.add_post_chi_tiet_next);
         add_post_filter_back = findViewById(R.id.add_post_filter_back);
@@ -162,6 +164,16 @@ public class AddPostActivity extends AppCompatActivity implements View.OnClickLi
         ArrayAdapter<String> adp2 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, lisKhauPhan);
         add_post_khau_phan.setAdapter(adp2);
+
+        ArrayList<String> lisSeason = new ArrayList<>();
+        lisSeason.add("mùa xuân");
+        lisSeason.add("mùa hè");
+        lisSeason.add("mùa thu");
+        lisSeason.add("mùa đông");
+
+        ArrayAdapter<String> adp3 = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, lisKhauPhan);
+        add_post_season.setAdapter(adp3);
 
     }
 
@@ -403,6 +415,7 @@ public class AddPostActivity extends AppCompatActivity implements View.OnClickLi
                 post.setPostImage(uri.toString());
                 post.setMucDo(add_post_muc_do.getSelectedItem().toString());
                 post.setKhauPhan(add_post_khau_phan.getSelectedItem().toString());
+                post.setKhauPhan(add_post_season.getSelectedItem().toString());
                 post.setPostDes(add_post_des.getText().toString().trim());
                 post.setPostTime(DateUtil.getcurrentDate());
                 Intent intent = new Intent(AddPostActivity.this, AddPostStepActivity.class);

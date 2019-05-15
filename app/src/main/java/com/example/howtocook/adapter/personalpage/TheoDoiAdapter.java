@@ -3,6 +3,7 @@ package com.example.howtocook.adapter.personalpage;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,11 @@ import com.example.howtocook.R;
 import com.example.howtocook.model.TopUserFollow;
 import com.example.howtocook.model.basemodel.Follow;
 import com.example.howtocook.model.basemodel.Users;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -38,10 +44,11 @@ public class TheoDoiAdapter extends RecyclerView.Adapter<TheoDoiAdapter.TheoDoiA
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TheoDoiAdapterHolder theoDoiAdapterHolder, int i) {
+    public void onBindViewHolder(@NonNull final TheoDoiAdapterHolder theoDoiAdapterHolder, int i) {
 
         Users users = arr.get(i).getUsers();
         ArrayList<Follow> list = arr.get(i).getListIsFollowed();
+        theoDoiAdapterHolder.button_follow.setVisibility(View.GONE);
         if (users!= null){
             theoDoiAdapterHolder.textViewUsername.setText(users.getFullName());
             if (context != null){
@@ -49,6 +56,18 @@ public class TheoDoiAdapter extends RecyclerView.Adapter<TheoDoiAdapter.TheoDoiA
             }else{
 
             }
+            DatabaseReference database_reference = FirebaseDatabase.getInstance().getReference("Post");
+            database_reference.orderByChild("userId").equalTo(users.getUserId()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    theoDoiAdapterHolder.textViewCongThuc.setText(dataSnapshot.getChildrenCount() + " bài viết");
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.e("Loi", "Khong  the lay ve thong tin user");
+                }
+            });
 
         }
         if (list != null){

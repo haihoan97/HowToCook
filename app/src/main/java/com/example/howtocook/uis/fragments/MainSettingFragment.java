@@ -39,6 +39,8 @@ public class MainSettingFragment extends Fragment implements View.OnClickListene
     LinearLayout ln_setting_personal;
     CircleImageView img_setting_ava;
     TextView tv_setting_name;
+    TextView tv_setting_post_count;
+    TextView tv_setting_follow_count;
     Users currentUser;
 
     FirebaseDatabase firebase_database;
@@ -57,6 +59,8 @@ public class MainSettingFragment extends Fragment implements View.OnClickListene
         ln_setting_personal = view.findViewById(R.id.ln_setting_personal);
         img_setting_ava = view.findViewById(R.id.img_setting_ava);
         tv_setting_name = view.findViewById(R.id.tv_setting_name);
+        tv_setting_post_count = view.findViewById(R.id.tv_setting_post_count);
+        tv_setting_follow_count = view.findViewById(R.id.tv_setting_follow_count);
 
         setting_log_out.setOnClickListener(this);
         ln_setting_personal.setOnClickListener(this);
@@ -115,7 +119,31 @@ public class MainSettingFragment extends Fragment implements View.OnClickListene
                     Log.e("Loi", "Khong  the lay ve thong tin user");
                 }
             });
+            database_reference = firebase_database.getReference("Post");
+            database_reference.orderByChild("userId").equalTo(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    tv_setting_post_count.setText(dataSnapshot.getChildrenCount() + " bài viết");
+                }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.e("Loi", "Khong  the lay ve thong tin user");
+                }
+            });
+
+            database_reference = firebase_database.getReference("Follow");
+            database_reference.orderByChild("userIsFollowed").equalTo(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    tv_setting_follow_count.setText(dataSnapshot.getChildrenCount() + " người theo dõi");
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.e("Loi", "Khong  the lay ve thong tin user");
+                }
+            });
         }
     }
 }

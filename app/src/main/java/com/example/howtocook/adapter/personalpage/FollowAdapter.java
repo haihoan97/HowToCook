@@ -29,10 +29,22 @@ public class FollowAdapter extends RecyclerView.Adapter<FollowAdapter.ViewHolder
 
     private ArrayList<Follow> list;
     private Context context;
+    private OnItemClick itemClick;
+
+    public interface OnItemClick{
+        void onItemClick(View view);
+        void ToggleClick(View view, ToggleButton toggleButton, boolean isChecked);
+    }
 
     public FollowAdapter(ArrayList<Follow> list, Context context) {
         this.list = list;
         this.context = context;
+    }
+
+    public FollowAdapter(ArrayList<Follow> list, Context context, OnItemClick itemClick) {
+        this.list = list;
+        this.context = context;
+        this.itemClick = itemClick;
     }
 
     @NonNull
@@ -47,8 +59,9 @@ public class FollowAdapter extends RecyclerView.Adapter<FollowAdapter.ViewHolder
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
         Follow follow = list.get(i);
         viewHolder.textViewQuanTam.setText("");
-        viewHolder.textViewQuanTam.setText("");
         final String userId = follow.getUserIsFollowed();
+
+        viewHolder.button_follow.setVisibility(View.GONE);
 
         DatabaseReference database_reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
         database_reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -97,13 +110,27 @@ public class FollowAdapter extends RecyclerView.Adapter<FollowAdapter.ViewHolder
         TextView textViewUsername, textViewCongThuc, textViewQuanTam;
         ToggleButton button_follow;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
             circleImageView = itemView.findViewById(R.id.circleImageView);
             textViewUsername = itemView.findViewById(R.id.textview_username);
             textViewCongThuc = itemView.findViewById(R.id.textview_cong_thuc);
             textViewQuanTam = itemView.findViewById(R.id.textview_quan_tam);
             button_follow = itemView.findViewById(R.id.button_follow);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemClick.onItemClick(itemView);
+                }
+            });
+
+            button_follow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemClick.ToggleClick(itemView, button_follow, button_follow.isChecked());
+                }
+            });
         }
     }
 }

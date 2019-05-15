@@ -78,7 +78,8 @@ public class MainPersonalPostAdapter extends RecyclerView.Adapter<MainPersonalPo
             Glide.with(context).load(post.getPostImage()).into(viewHolder.item_personal_post_img);
             viewHolder.item_personal_post_des.setText("");
             viewHolder.item_personal_post_view_and_like.setText(post.getView() + " lượt xem và " + post.getCountLike() + " lượt thích");
-            viewHolder.item_personal_post_des.setText(post.getPostTime());
+            viewHolder.item_personal_post_des.setText(post.getPostDes());
+            viewHolder.item_personal_post_status.setText(post.getPostTime());
         }
 
         if (users != null){

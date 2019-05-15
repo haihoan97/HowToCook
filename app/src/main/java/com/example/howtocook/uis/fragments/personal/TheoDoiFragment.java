@@ -12,6 +12,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.howtocook.R;
 import com.example.howtocook.adapter.personalpage.FollowAdapter;
@@ -20,6 +23,8 @@ import com.example.howtocook.model.PersonalPost;
 import com.example.howtocook.model.TopUserFollow;
 import com.example.howtocook.model.basemodel.Follow;
 import com.example.howtocook.model.basemodel.Users;
+import com.example.howtocook.uis.acticities.PersonalActivity;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +36,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,10 +73,23 @@ public class TheoDoiFragment extends Fragment {
         firebase_database = FirebaseDatabase.getInstance();
         arr = new ArrayList<>();
 
-        Intent intent = getActivity().getIntent();
+        final Intent intent = getActivity().getIntent();
         String Uid = intent.getStringExtra("user");
         recyclerView = view.findViewById(R.id.recyclerView);
-        followAdapter = new FollowAdapter(arr, getContext());
+        followAdapter = new FollowAdapter(arr, getContext(), new FollowAdapter.OnItemClick() {
+            @Override
+            public void onItemClick(View view) {
+                int i = recyclerView.getChildAdapterPosition(view);
+                Intent intent1 = new Intent(getContext(), PersonalActivity.class);
+                intent1.putExtra("user", arr.get(i).getUserIsFollowed());
+                startActivity(intent1);
+            }
+
+            @Override
+            public void ToggleClick(View view, ToggleButton toggleButton, boolean isCheck) {
+
+            }
+        });
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setAdapter(followAdapter);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -99,5 +119,7 @@ public class TheoDoiFragment extends Fragment {
             }
         });
     }
+
+
 
 }

@@ -1,5 +1,6 @@
 package com.example.howtocook.uis.acticities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.example.howtocook.R;
@@ -35,11 +37,14 @@ public class PersonalActivity extends AppCompatActivity {
     FirebaseDatabase firebase_database;
     DatabaseReference database_reference;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.show();
 
         toolbar =findViewById(R.id.toolbar);
         tabLayout = findViewById(R.id.tab_layout);
@@ -58,6 +63,12 @@ public class PersonalActivity extends AppCompatActivity {
         if(getSupportActionBar()!=null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         Pager_Adapter adapter  = new Pager_Adapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
@@ -70,13 +81,14 @@ public class PersonalActivity extends AppCompatActivity {
     public void initUser(String Uid){
         if (user != null){
             database_reference = firebase_database.getReference("Users").child(Uid);
-            database_reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            database_reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     Users users = dataSnapshot.getValue(Users.class);
 
                     toolbar.setTitle(users.getFullName());
                     Glide.with(PersonalActivity.this).load(users.getUserImg()).into(personal_user_ava);
+                    progressDialog.dismiss();
 
                 }
 
